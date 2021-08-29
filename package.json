@@ -38,6 +38,8 @@
 		"@angular/platform-browser-dynamic": "11.2.11",
 		"@angular/router": "11.2.11",
 		"@nrwl/angular": "12.0.8",
+		"@types/d3": "^7.0.0",
+		"d3": "^7.0.1",
 		"firebase": "8.4.1",
 		"rxjs": "6.6.7",
 		"tslib": "2.2.0",

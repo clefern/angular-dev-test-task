@@ -87,3 +87,20 @@ ng affected:e2e
 		>
 	</details>
 </main>
+
+<div>
+
+	<input [formControl]="quantity" type="text">
+	
+	<select [formControl]="crypt" (change)="onChangeCrypt()">
+		<option *ngFor="let item of crypts" [value]="item" >
+			{{ item }}
+		</option>
+	</select>
+</div>
+
+
+
+<bp-line-chart *ngIf="data"
+	[data]="data"
+></bp-line-chart>

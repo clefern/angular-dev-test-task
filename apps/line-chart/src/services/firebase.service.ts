@@ -34,17 +34,27 @@ export class FirebaseService {
 		});
 
 		// Example
-		this._firestore.collection(`${ CRYPTO_CURRENCIES_PRICES_COLLECTION_NAME }/BTC/prices`).onSnapshot({
+		// this.turnOnRealtimeCryptoCurrencyPrices('BTC')
+		// setTimeout(() => void this.turnOnRealtimeCryptoCurrencyPrices('BTC'), 2000);
+	}
+
+	index(cryptoCurrencyCode: CryptoCurrencyCode, quantity: number = 30) {
+		console.log(cryptoCurrencyCode, {cryptoCurrencyCode});
+		
+		this._firestore.collection(`${ CRYPTO_CURRENCIES_PRICES_COLLECTION_NAME }/${cryptoCurrencyCode}/prices`).onSnapshot({
 			next(snapshot) {
+				// const items = snapshot.docChanges().map(change => ({
+				// 	timestamp: change.doc.id,
+				// 	...change.doc.data(),
+				// })).slice(- quantity);
+				// return items;
 				console.warn(snapshot.docChanges().map(change => ({
-					 timestamp: change.doc.id,
+					timestamp: change.doc.id,
 					...change.doc.data(),
-				})));
+				})).slice(- quantity));
 			},
 		});
-
-		// Example
-		setTimeout(() => void this.turnOnRealtimeCryptoCurrencyPrices('BTC'), 2000);
+		this.turnOnRealtimeCryptoCurrencyPrices(cryptoCurrencyCode)
 	}
 
 	turnOnRealtimeCryptoCurrencyPrices(cryptoCurrencyCode: CryptoCurrencyCode): void {
